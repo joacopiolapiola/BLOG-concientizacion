@@ -1,0 +1,20 @@
+CREATE DATABASE basededatos;
+USE basededatos;
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(30)
+);
+CREATE TABLE admins(
+  nombre varchar(20),
+  contrasenia varchar(20)
+);
+CREATE TABLE articulos(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  cuerpo TEXT,
+  titulo varchar(40),
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  autor varchar(20),
+  FOREIGN KEY (autor)
+        REFERENCES admins(nombre)
+);
+
