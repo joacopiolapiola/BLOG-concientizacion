@@ -5,16 +5,19 @@ CREATE TABLE categorias (
     nombre VARCHAR(30)
 );
 CREATE TABLE admins(
-  nombre varchar(20),
-  contrasenia varchar(20)
+  nombre varchar(20) NOT NULL,
+  contrasenia varchar(20) NOT NULL
 );
 CREATE TABLE articulos(
   id INT AUTO_INCREMENT PRIMARY KEY,
-  cuerpo TEXT,
-  titulo varchar(40),
+  cuerpo TEXT NOT NULL,
+  categoria INT,
+  titulo VARCHAR(40),
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  autor varchar(20),
+  autor VARCHAR(20),
   FOREIGN KEY (autor)
-        REFERENCES admins(nombre)
+        REFERENCES admins(nombre) 
+  FOREIGN KEY (categoria)
+        REFERENCES categorias(id)
 );
 
