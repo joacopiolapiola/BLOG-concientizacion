@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ver articulos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body >
+    <main>
     <?php 
     //variables de conexion
         $host    = 'localhost';
@@ -77,8 +79,7 @@
                 </a>
             </label><br>
         <?php endforeach; ?>
-
-        
+</main>        
 <a href="crear_categorias.php">Crear mas categorias</a>
 <a href="crear_articulos.php">Crear mas articulos</a>
     </body>

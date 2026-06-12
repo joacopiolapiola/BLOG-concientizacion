@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>articulos backend</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
 <?php
 $host    = 'localhost';
 $db      = 'basededatos';
@@ -39,7 +49,7 @@ $data = [
 // ejecuta el sql + datos
 $stmt->execute($data);
 
-echo "Data written successfully! Last inserted ID: <br>" . $pdo->lastInsertId();
+//echo "Data written successfully! Last inserted ID: <br>" . $pdo->lastInsertId();
 
 $results = $pdo->query($sql2)->fetchAll(PDO::FETCH_ASSOC);
 
@@ -47,5 +57,8 @@ foreach ($results as $row) {
     echo "nombre:   ",$row['nombre']," ID:      ", $row['id'],"<br>";
 }
 ?>
+</main>
 <a href="crear_categorias.php">Crear mas categorias</a>
 <a href="crear_articulos.php">Crear mas articulos</a>
+</body>
+</html>

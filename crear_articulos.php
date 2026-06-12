@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear articulos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body >
+<body ><main>
 <?php 
 //variables de conexion
     $host    = 'localhost';
@@ -41,8 +42,7 @@
         Titulo de tu articulo <br>
         <input type="text" name="titulo" id="" placeholder=""><br>
 
-    <h3>Select Categories:</h3>
-
+    <h3>Categorias:</h3>
     <?php
     //mostrar cada categoria y enviarla como un array para ser subida
     foreach ($results as $row): ?>
@@ -52,8 +52,8 @@
         </label><br>
     <?php endforeach; ?>
 
-        Cuerpo el articulo <br>
-        <textarea id="story" name="cuerpo" rows="10" cols="40" style="color: black;">
+        <h3>Cuerpo el articulo</h3> <br>
+        <textarea id="story" name="cuerpo" rows="10" cols="10" style="color: black;">
         ......
         </textarea>
         <input type="submit" value="subir">
@@ -66,15 +66,28 @@
     <ul>
         <?php foreach ($articulos as $articulo): ?>
             <li>
-                <p>categorias:</p>
-                <?= htmlspecialchars($articulo['titulo']) ?>
-                <strong> <h3>titulo:</h3>
-                <?= htmlspecialchars($articulo['titulo']) ?></strong>
+                <h3>titulo: <?= htmlspecialchars($articulo['titulo']) ?></h3>
+                
                 <h3>cuerpo:</h3>
+                <p>
                 <?= htmlspecialchars($articulo['cuerpo']) ?>
+                </p>
+                <h5>Categorias</h5>
+                <ul>
+                    <?php 
+                        $incats = $pdo->query("SELECT categoria_id FROM articulo_categoria WHERE articulo_id = ".$articulo['id'].";")->fetchAll(PDO::FETCH_ASSOC);
+                        foreach($incats as $insidecats){
+                            $nombredecategoria = $pdo->query("SELECT nombre FROM categorias WHERE id =".$insidecats['categoria_id'].";")->fetchAll(PDO::FETCH_ASSOC);
+                            foreach($nombredecategoria as $indexnombres){
+                                echo "<li>".$indexnombres['nombre']."</li><br>";
+                            }
+                        }
+                    ?>
+                </ul>    
+                <?= htmlspecialchars($articulo['titulo']) ?>            
             </li>
         <?php endforeach; ?>
     </ul>
-
+        </main>
 </body>
 </html>

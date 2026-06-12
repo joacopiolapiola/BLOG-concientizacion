@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>crear categorias</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body >
+    <main>
 <?php 
 //variables de conexion
     $host    = 'localhost';
@@ -39,7 +41,7 @@
 
     <form action="categorias.php" method="post" style="margin-left:100px;padding:1px 16px;height:1000px;text-align: center;">
     <?php
-    //mostrar cada categoria y enviarla como un array para ser subida
+    //mostrar cada categoria 
     foreach ($results as $row): ?>
         <label>
             <a >
@@ -55,7 +57,7 @@
 
         <input type="submit" value="subir">
     </form>        
-    
+    </main>
 <a href="crear_categorias.php">Crear mas categorias</a>
 <a href="crear_articulos.php">Crear mas articulos</a>
 </body>

@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>articulos backend</title>
+</head>
+<body>
+    <main>
 <?php
 $host    = 'localhost';
 $db      = 'basededatos';
@@ -71,6 +81,8 @@ foreach ($cats as $cat_id) {
     $stmt->execute($data);
     echo "Categoria ID " . $cat_id . " vinculada al articulo ID " . $actualid . "<br>";
 }
-?>
+?></main>
 <a href="crear_categorias.php">Crear mas categorias</a>
 <a href="crear_articulos.php">Crear mas articulos</a>
+</body>
+</html>
