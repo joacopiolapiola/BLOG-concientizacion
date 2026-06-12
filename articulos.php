@@ -4,9 +4,12 @@ $db      = 'basededatos';
 $user    = 'root';
 $pass    = '';
 $charset = 'utf8mb4';
-$titulo=$_REQUEST['titulo'];
-$cuerpo=$_REQUEST['cuerpo'];
-$cats[]=$_REQUEST['categorias'];
+$titulo = $_REQUEST['titulo'] ?? '';
+$cuerpo = $_REQUEST['cuerpo'] ?? '';
+$cats = [];
+if (isset($_REQUEST['categorias'])) {
+    $cats = is_array($_REQUEST['categorias']) ? $_REQUEST['categorias'] : [$_REQUEST['categorias']];
+}
 
 // conexion
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -53,21 +56,21 @@ foreach ($results as $row) {
     echo "titulo:   ",$row['titulo']," ID:      ", $row['id'],"cuerpo:        ", $row['cuerpo'] . "<br>";
 }
 
-//link de art y categorias
-// falta hacer esto!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// falta hacer esto!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// falta hacer esto!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// falta hacer esto!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// link de art y categorias
+// ahora insertamos cada categoria seleccionada en la tabla pivote
+$sql3 = "INSERT INTO articulo_categoria (articulo_id, categoria_id) VALUES (:id, :categoria_id)";
 
-$sql3= "INSERT INTO articulo_categoria (articulo_id, categoria_id) VALUES (:id,:cats)";
+// Prepara el sql
+$stmt = $pdo->prepare($sql3);
 
-//hay que hacer algo asi, iterar por cada categoria pero no se como escribirlo
-
-//$stmt= $pdo->prepare($sql3);
-
-// for ($i=0; $i < count($cats) ; $i++) {  
-// $stmt->execute(['id' => $actualid, 'cats' => $cats[$i]]);
-// }
-
-
+foreach ($cats as $cat_id) {
+    $data = [
+        'id' => $actualid,
+        'categoria_id' => $cat_id,
+    ];
+    $stmt->execute($data);
+    echo "Categoria ID " . $cat_id . " vinculada al articulo ID " . $actualid . "<br>";
+}
 ?>
+<a href="crear_categorias.php">Crear mas categorias</a>
+<a href="crear_articulos.php">Crear mas articulos</a>

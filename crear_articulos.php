@@ -34,7 +34,7 @@
     }
     //rescatamos las categorias con todos sus valores (nombre e id)
     $results = $pdo->query("SELECT * FROM categorias")->fetchAll(PDO::FETCH_ASSOC);
-
+    $articulos = $pdo->query("SELECT * FROM articulos")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
     <form action="articulos.php" method="post" style="margin-left:100px;padding:1px 16px;height:1000px;text-align: center;">
@@ -58,6 +58,23 @@
         </textarea>
         <input type="submit" value="subir">
     </form>        
+
+<a href="crear_categorias.php">Crear mas categorias</a>
+<a href="crear_articulos.php">Crear mas articulos</a>
+
+    <h3>Articulos existentes:</h3>
+    <ul>
+        <?php foreach ($articulos as $articulo): ?>
+            <li>
+                <p>categorias:</p>
+                <?= htmlspecialchars($articulo['titulo']) ?>
+                <strong> <h3>titulo:</h3>
+                <?= htmlspecialchars($articulo['titulo']) ?></strong>
+                <h3>cuerpo:</h3>
+                <?= htmlspecialchars($articulo['cuerpo']) ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 
 </body>
 </html>
