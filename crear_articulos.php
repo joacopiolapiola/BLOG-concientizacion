@@ -83,8 +83,7 @@
                             }
                         }
                     ?>
-                </ul>    
-                <?= htmlspecialchars($articulo['titulo']) ?>            
+                </ul>      
             </li>
         <?php endforeach; ?>
     </ul>
