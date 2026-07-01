@@ -1,12 +1,23 @@
 body main{
-    margin:20%;
     background-color: rgb(0, 33, 59);
     color: aliceblue;
     font-family: cursive;
+    text-shadow: 
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000;
 }
 body{
-    background-color: rgb(0, 3, 17);
+    background-color: rgb(0, 3, 27);
+    font-family: cursive;
+    text-shadow: 
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000;
 }
+
 h1{
     text-align: center;
 }
@@ -26,6 +37,11 @@ h6{
     text-align: center;
 }
 form{
+    margin: 5%;
     background-color: beige;
-    color: black;
-}
+    color: white;
+   text-shadow: 
+    -2px -2px 0 #000,  
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000;}
